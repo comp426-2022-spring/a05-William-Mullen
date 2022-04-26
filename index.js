@@ -156,6 +156,7 @@ app.get('/app/flips/:number', (req, res) => {
     res.status(200).json({ 'raw' : results, "summary": count})
 })
 
+
 //a05 api for fliping multiple coins
 app.post('/app/flip/coins/', (req, res, next) => {
     const flips = coinFlips(req.body.number)
@@ -163,13 +164,21 @@ app.post('/app/flip/coins/', (req, res, next) => {
     res.status(200).json({"raw":flips,"summary":count})
 })
 
-app.get('/app/flip/call/heads', (req, res) => {
-    res.status(200).json(flipACoin("heads"))
-    });
+//ao5 api for guessing the flip
+app.post('/app/flip/call/', (req, res, next) => {
+    const game = flipACoin(req.body.guess)
+    res.status(200).json(game)
+})
 
-app.get('/app/flip/call/tails', (req, res) => {
-    res.status(200).json(flipACoin("tails"))
-    });
+
+
+// app.get('/app/flip/call/heads', (req, res) => {
+//     res.status(200).json(flipACoin("heads"))
+//     });
+
+// app.get('/app/flip/call/tails', (req, res) => {
+//     res.status(200).json(flipACoin("tails"))
+//     });
 
 app.use(function(req, res) {
     res.status(404).send("404 NOT FOUND")
