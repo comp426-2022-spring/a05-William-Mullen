@@ -30,11 +30,25 @@ multinav.addEventListener("submit", flipCoins)
 //create the submit handler
 function flipCoins(event){
 	document.getElementById("multi").setAttribute("classs", "active")
-	fetch('http://localhost:5000/app/flip/coins/', {mode: cors})
+	event.preventDefault();
+	
+	const endpoint = "app/flip/coin/"
+	const url = document.baseURI+endpoint
+
+	const formEvent = event.currentTarget
+
+	try{
+		const formData = new FormData(formEvent); 
+		const flips = await sendFlips({url, formData});
+
+		console.log(flips);
+	} catch (error) {
+		console.log(error);
+	}
 }
 //create a data sender
 function sendFlips({url, formData}){
-	const response = fetch()
+	const response = await fetch()
 	return response.json()
 }
 // Guess a flip by clicking either heads or tails button
