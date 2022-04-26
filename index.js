@@ -6,9 +6,9 @@ app.use(express.static('./public'));
 // Make Express use its own built-in body parser to handle JSON
 app.use(express.json());
 
-
+//--------------------------------------------------------------
 const fs = require ('fs')
-const db = require("./database.js")
+const db = require("./services/database.js")
 
 const express = require('express')
 const app = express()
