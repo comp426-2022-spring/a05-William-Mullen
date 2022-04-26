@@ -1,10 +1,5 @@
 // Place your server entry point code here
 
-// Serve static HTML files
-app.use(express.static('./public'));
-
-// Make Express use its own built-in body parser to handle JSON
-app.use(express.json());
 
 //--------------------------------------------------------------
 const fs = require ('fs')
@@ -38,8 +33,6 @@ if (args.help || args.h) {
     `)
     process.exit(0)
 }
-
-
 
 const server = app.listen(port, () => {
     console.log('App is running on port %PORT%'.replace('%PORT%',port))
@@ -97,6 +90,12 @@ if (args.log == true) {
 }
 
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+// Serve static HTML files
+app.use(express.static('./public'));
+
+// Make Express use its own built-in body parser to handle JSON
 app.use(express.json());
 
 app.use( (req, res, next) => {
