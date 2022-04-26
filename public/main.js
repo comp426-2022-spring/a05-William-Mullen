@@ -17,8 +17,8 @@ singlenav.addEventListener("click", flipCoin)
 				.then(function(result) {
 					console.log(result);
 					document.getElementById("result").innerHTML = result.flip;
-					document.getElementById("quarter").setAttribute("src", result.flip+".jpg");
-					coin.disabled = true
+					document.getElementById("quarter").setAttribute("src", "./assets/img/"+result.flip+".png");
+					//coin.disabled = true
 				})
 //				let flip = "FLIPPED"
 //				document.getElementById("coin").innerHTML = flip;
