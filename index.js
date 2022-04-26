@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------
 const fs = require ('fs')
-const db = require("./services/database.js")
+const db = require("./src/services/database.js")
 
 const express = require('express')
 const app = express()
