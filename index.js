@@ -12,8 +12,11 @@ const morgan = require('morgan')
 
 const args = require('minimist')(process.argv.slice(2))
 
+// Add cors dependency
+const cors = require('cors')
+
 args["port"]
-var port = args.port || 5555
+var port = args.port || 5000
 
 //help
 if (args.help || args.h) {
@@ -97,6 +100,9 @@ app.use(express.static('./public'));
 
 // Make Express use its own built-in body parser to handle JSON
 app.use(express.json());
+
+// Set up cors middleware on all endpoints
+app.use(cors())
 
 app.use( (req, res, next) => {
     let logdata = {
