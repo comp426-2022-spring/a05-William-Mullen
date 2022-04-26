@@ -104,6 +104,7 @@ app.use(express.json());
 // Set up cors middleware on all endpoints
 app.use(cors())
 
+
 app.use( (req, res, next) => {
     let logdata = {
         remoteaddr: req.ip,
@@ -153,6 +154,13 @@ app.get('/app/flips/:number', (req, res) => {
     var results = coinFlips(req.params.number)
     var count = countFlips(results)
     res.status(200).json({ 'raw' : results, "summary": count})
+})
+
+//a05 api for fliping multiple coins
+app.post('/app/flip/coins/', (req, res, next) => {
+    const flips = coinFlips(req.body.number)
+    const count = countFlips(flips)
+    res.status(200).json({"raw":flips,"summary":count})
 })
 
 app.get('/app/flip/call/heads', (req, res) => {
