@@ -1,8 +1,8 @@
-// Focus div based on nav button click
 
 // Flip one coin and show coin image to match result when button clicked
-const singlenav = document.getElementById("singlenav")
+
 // Add event listener for coin button
+const singlenav = document.getElementById("singlenav")
 singlenav.addEventListener("click", flipCoin)
 
 	function flipCoin() {
@@ -20,19 +20,23 @@ singlenav.addEventListener("click", flipCoin)
 				})
 }
 
-const multinav = document.getElementById("multinav")
-multinav.addEventListener("click", showMany)
-	function showMany() {
-		document.getElementById("guess").setAttribute("class", "hidden")
-		document.getElementById("single").setAttribute("class", "hidden")
-		document.getElementById("multi").setAttribute("class", "active")
-	}
+//--------------------------------------------------------------------------------------------------------------------------
 
 // Flip multiple coins and show coin images in table as well as summary results
 // Enter number and press button to activate coin flip series
-const numCoins = document.getElementById("numCoins")
+
+
+//show multi hide rest
+const multinav = document.getElementById("multinav")
+multinav.addEventListener("click", showMany)
+function showMany() {
+	document.getElementById("guess").setAttribute("class", "hidden")
+	document.getElementById("single").setAttribute("class", "hidden")
+	document.getElementById("multi").setAttribute("class", "active")
+}
 
 //event listner for multinav
+const numCoins = document.getElementById("numCoins")
 numCoins.addEventListener("submit", flipCoins)
 
 //create the submit handler
@@ -75,29 +79,26 @@ async function sendFlips({url, formData}){
 	const response = await fetch(url, options);
 	return response.json()
 }
+
 //-----------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-
-const guessnav = document.getElementById("guessnav")
-guessnav.addEventListener("click", showGuess)
-	function showGuess() {
-		document.getElementById("guess").setAttribute("class", "active")
-		document.getElementById("single").setAttribute("class", "hidden")
-		document.getElementById("multi").setAttribute("class", "hidden")
-	}
-
 
 // Guess a flip by clicking either heads or tails button
-const headz = document.getElementById("headz")
-// Add event listener for head button
-headz.addEventListener("click", guessHead)
 
-//create the submit handler
-function guessHead(){
-
+//show guess hide rest
+const guessnav = document.getElementById("guessnav")
+guessnav.addEventListener("click", showGuess)
+function showGuess() {		
 	document.getElementById("guess").setAttribute("class", "active")
 	document.getElementById("single").setAttribute("class", "hidden")
 	document.getElementById("multi").setAttribute("class", "hidden")
+}
+
+// Add event listener for head button
+const headz = document.getElementById("headz")
+headz.addEventListener("click", guessHead)
+
+function guessHead(){
 
 	fetch('http://localhost:5000/app/flip/call/heads', {mode: 'cors'})
 		.then(function(response) {
@@ -111,12 +112,10 @@ function guessHead(){
 		})
 }
 
-
+// event listener for tail button
 const tailz = document.getElementById("tailz")
-// Add event listener for tail button
 tailz.addEventListener("click", guessTail)
 
-//create the submit handler
 function guessTail(){
 
 	fetch('http://localhost:5000/app/flip/call/tails', {mode: 'cors'})
