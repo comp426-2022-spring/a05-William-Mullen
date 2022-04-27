@@ -24,15 +24,18 @@ singlenav.addEventListener("click", flipCoin)
 
 // Flip multiple coins and show coin images in table as well as summary results
 // Enter number and press button to activate coin flip series
-const multinav = document.getElementById("multinav")
+const numCoins = document.getElementById("numCoins")
+
 //event listner for multinav
-multinav.addEventListener("submit", flipCoins)
+numCoins.addEventListener("submit", flipCoins)
+
 //create the submit handler
-function flipCoins(event){
-	document.getElementById("multi").setAttribute("classs", "active")
+async function flipCoins(event){
 	event.preventDefault();
+
+	document.getElementById("multi").setAttribute("classs", "active")
 	
-	const endpoint = "app/flip/coin/"
+	const endpoint = "app/flip/coins/"
 	const url = document.baseURI+endpoint
 
 	const formEvent = event.currentTarget
@@ -42,13 +45,29 @@ function flipCoins(event){
 		const flips = await sendFlips({url, formData});
 
 		console.log(flips);
+		document.getElementById("heads").innerHTML = "Heads:"+flips.summary.heads;
+		document.getElementById("tails").innerHTML = "Tails:"+flips.summary.tails;
+
 	} catch (error) {
 		console.log(error);
 	}
 }
+
 //create a data sender
-function sendFlips({url, formData}){
-	const response = await fetch()
+async function sendFlips({url, formData}){
+	const plainFormData = Object.fromEntries(formData.entries());
+	const formDataJson = JSON.stringify(plainFormData);
+
+	const options = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json"
+		},
+		body: formDataJson
+	}
+
+	const response = await fetch(url, options);
 	return response.json()
 }
 // Guess a flip by clicking either heads or tails button
