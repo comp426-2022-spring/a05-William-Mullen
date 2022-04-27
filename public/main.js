@@ -22,6 +22,8 @@ const multinav = document.getElementById("multinav")
 multinav.addEventListener("click", showMany)
 	function showMany() {
 		document.getElementById("multi").setAttribute("class", "active")
+		document.getElementById("single").setAttribute("class", "hidden")
+
 	}
 
 // Flip multiple coins and show coin images in table as well as summary results
@@ -55,7 +57,6 @@ async function flipCoins(event){
 
 //create a data sender
 async function sendFlips({url, formData}){
-	document.getElementById("multi").setAttribute("classs", "active")
 
 	const plainFormData = Object.fromEntries(formData.entries());
 	const formDataJson = JSON.stringify(plainFormData);
@@ -72,19 +73,53 @@ async function sendFlips({url, formData}){
 	const response = await fetch(url, options);
 	return response.json()
 }
-
+//-----------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
 
 // Guess a flip by clicking either heads or tails button
-const singlenav = document.getElementById("singlenav")
-// Add event listener for coin button
-singlenav.addEventListener("click", flipCoin)
+const headz = document.getElementById("headz")
+// Add event listener for head button
+headz.addEventListener("click", guessHead)
 
-	function flipCoin() {
-		document.getElementById("single").setAttribute("class", "active")
-		fetch('http://localhost:5000/app/flip/', {mode: 'cors'})
+//create the submit handler
+function guessHead(){
+
+	document.getElementById("guess").setAttribute("class", "active")
+	document.getElementById("single").setAttribute("class", "hidden")
+	document.getElementById("multi").setAttribute("class", "active")
+
+	fetch('http://localhost:5000/app/flip/call/heads', {mode: 'cors'})
 		.then(function(response) {
-    		return response.json();
-  				})
-				.then(function(result) {
-					console.log(result);
-					document.getElementById("result").innerHTML = result.flip;
+			return response.json();
+		  })
+		.then(function(result) {
+			console.log(result);
+			 document.getElementById("guesss").innerHTML = "heads";
+			 document.getElementById("rezz").innerHTML = result.flip;
+
+		})
+}
+
+
+const tailz = document.getElementById("tailz")
+// Add event listener for tail button
+tailz.addEventListener("click", guessTail)
+
+//create the submit handler
+function guessTail(){
+
+	document.getElementById("guess").setAttribute("class", "active")
+	document.getElementById("single").setAttribute("class", "hidden")
+	document.getElementById("multi").setAttribute("class", "active")
+
+	fetch('http://localhost:5000/app/flip/call/tails', {mode: 'cors'})
+		.then(function(response) {
+			return response.json();
+		  })
+		.then(function(result) {
+			console.log(result);
+			 document.getElementById("guesss").innerHTML = "tails";
+			 document.getElementById("rezz").innerHTML = result.flip;
+
+		})
+}
