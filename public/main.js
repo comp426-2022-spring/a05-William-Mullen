@@ -15,12 +15,14 @@ singlenav.addEventListener("click", flipCoin)
 					console.log(result);
 					document.getElementById("result").innerHTML = result.flip;
 					document.getElementById("quarter").setAttribute("src", "./assets/img/"+result.flip+".png");
-					//coin.disabled = true
 				})
-			//	let flip = "FLIPPED"
-			//	document.getElementById("coin").innerHTML = flip;
-			//	console.log("Coin has been flipped. Result: "+ flip)
 }
+
+const multinav = document.getElementById("multinav")
+multinav.addEventListener("click", showMany)
+	function showMany() {
+		document.getElementById("multi").setAttribute("class", "active")
+	}
 
 // Flip multiple coins and show coin images in table as well as summary results
 // Enter number and press button to activate coin flip series
@@ -32,8 +34,6 @@ numCoins.addEventListener("submit", flipCoins)
 //create the submit handler
 async function flipCoins(event){
 	event.preventDefault();
-
-	document.getElementById("multi").setAttribute("classs", "active")
 	
 	const endpoint = "app/flip/coins/"
 	const url = document.baseURI+endpoint
@@ -55,6 +55,8 @@ async function flipCoins(event){
 
 //create a data sender
 async function sendFlips({url, formData}){
+	document.getElementById("multi").setAttribute("classs", "active")
+
 	const plainFormData = Object.fromEntries(formData.entries());
 	const formDataJson = JSON.stringify(plainFormData);
 
@@ -70,4 +72,19 @@ async function sendFlips({url, formData}){
 	const response = await fetch(url, options);
 	return response.json()
 }
+
+
 // Guess a flip by clicking either heads or tails button
+const singlenav = document.getElementById("singlenav")
+// Add event listener for coin button
+singlenav.addEventListener("click", flipCoin)
+
+	function flipCoin() {
+		document.getElementById("single").setAttribute("class", "active")
+		fetch('http://localhost:5000/app/flip/', {mode: 'cors'})
+		.then(function(response) {
+    		return response.json();
+  				})
+				.then(function(result) {
+					console.log(result);
+					document.getElementById("result").innerHTML = result.flip;
