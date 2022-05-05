@@ -32,18 +32,41 @@
       <button id="multinav">Flip multiple coins</button>
       <button id="guessnav">Guess the result</button>
     </nav>
-    <div id="home">
-      
+
+    <div id="home" class="active">
+      <p>Click "Flip one coin" to randomly flip a coin and see the results.</p>
+      <p>Click "Flip multiple coins" to chose a number of coins to be randomly flipped and see the count of the results.</p>
+      <p>Click "Guess the result" to guess the next coin flip.</p>
     </div>    
+
     <div id="single" class="hidden">
-      
+    <img src="../assets/img/coin.png" id="quarter" class="bigcoin">  
+    <p>Result: <span id="result"></span></p>
     </div>
+
     <div id="multi" class="hidden">
-      
+      <h1>Flip many coins</h1>
+      <form id="numCoins">
+        <label for="number">
+          <strong>How many coins?</strong>
+        </label>
+        <input type="number" name="number" id="number"number>
+        <input type="submit" value="flip em">
+      </form>
+      <h2>Results</h2>
+        <p id="heads"></p>
+        <p id="tails"></p>
     </div>
+
     <div id="guess" class="hidden">
-      
+      <h1>Guess:</h1>
+        <button id="headz">Heads</button>
+        <button id="tailz">Tails</button>
+      <p> Your guess: <span id="guesss"></span></p>
+      <h3>Results: </h3>
+        <p id="rezz"></p>
     </div>
+
 	<script src="main.js"></script>
   </body>
 </html>

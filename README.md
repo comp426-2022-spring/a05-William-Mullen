@@ -84,19 +84,27 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5000/app/flip/
 ```
 
 #### Response body
 
 ```
-
+{"flip":"heads"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 16
+ETag: W/"10-VYm8Bk1/RW8RGhDXdTwBYk6lbGE"  
+Date: Wed, 27 Apr 2022 06:14:35 GMT       
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flips/:number/ (GET)
@@ -104,19 +112,28 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5000/app/flips/3
+3
 ```
 
 #### Response body
 
 ```
-
+{"raw":["heads","heads","tails"],"summary":{"heads":2,"tails":1}}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 65
+ETag: W/"41-1Kj+KHDLZ6uEOWmLBnptxvHNwgc"  
+Date: Wed, 27 Apr 2022 06:16:51 GMT       
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/coin/ (GET)
@@ -124,19 +141,19 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+N/A
 ```
 
 #### Response body
 
 ```
-
+N/A
 ```
 
 #### Response headers
 
 ```
-
+N/A
 ```
 
 ### /app/flip/call/:guess/ (GET)
@@ -144,19 +161,27 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5000/app/flip/call/heads
 ```
 
 #### Response body
 
 ```
-
+{"call":"heads","flip":"tails","result":"lose"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 47
+ETag: W/"2f-7jHpBxeRlMwmX45a5nEiITPVllI"  
+Date: Wed, 27 Apr 2022 06:23:53 GMT       
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/call/ (POST)
@@ -218,7 +243,7 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+$ curl http://localhost:5000/app/log/access/
 ```
 
 #### Response body
@@ -238,7 +263,7 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+$ curl http://localhost:5000/app/log/access/
 ```
 
 #### Response body
